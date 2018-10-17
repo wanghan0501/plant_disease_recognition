@@ -1,0 +1,81 @@
+whole:
+  # train
+  epochs: 100
+  lr: 0.01
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+
+  # dataset
+  num_classes: 61
+  train_label_path: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/AgriculturalDisease_train_annotations.json
+  validate_label_path: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/AgriculturalDisease_validation_annotations.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: ckpt
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: run
+
+species:
+  # train
+  epochs: 100
+  lr: 0.01
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+
+  # dataset
+  num_classes: 10
+  train_label_path: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/AgriculturalDisease_train_mutilayer.json
+  validate_label_path: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/AgriculturalDisease_validation_mutilayer.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/species
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/species
+
+
+apple:
+  # train
+  epochs: 100
+  lr: 0.01
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+
+  # dataset
+  num_classes: 6
+  train_label_path: data/mutil_task_annotation/apple/apple_train.json
+  validate_label_path: data/mutil_task_annotation/apple/apple_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/apple
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/apple

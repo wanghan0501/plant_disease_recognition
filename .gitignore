@@ -1,0 +1,15 @@
+# IntelliJ project files
+.idea
+*.iml
+**/*.pyc
+out
+gen
+.vscode
+data/
+ckpt/
+run/
+multi_task_ckpt/
+multi_task_run/
+pretrained/
+__MACOSX/
+**/._.DS_Store
