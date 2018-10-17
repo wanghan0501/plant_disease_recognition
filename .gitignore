@@ -1,6 +1,7 @@
 # IntelliJ project files
 .idea
 *.iml
+.ipynb_checkpoints/
 **/*.pyc
 out
 gen
