@@ -6,6 +6,7 @@ whole:
   momentum: 0.9
   use_cuda: True
   logger: True
+  optim: Adam
 
   # dataset
   num_classes: 61
@@ -33,6 +34,7 @@ species:
   momentum: 0.9
   use_cuda: True
   logger: True
+  optim: Adam
 
   # dataset
   num_classes: 10
@@ -61,6 +63,7 @@ apple:
   momentum: 0.9
   use_cuda: True
   logger: True
+  optim: Adam
 
   # dataset
   num_classes: 6

@@ -55,13 +55,21 @@ class Model:
   def train(self):
     criterion = nn.CrossEntropyLoss()
 
-    optimizer = torch.optim.SGD(
-      self.net.parameters(), lr=self.config['lr'],
-      momentum=self.config['momentum'],
-      weight_decay=self.config['weight_decay'])
-
-    lr_decay = lr_scheduler.CosineAnnealingLR(
-      optimizer, T_max=self.config['epochs'])
+    if self.config['optim'] == 'SGD':
+      optimizer = torch.optim.SGD(
+        self.net.parameters(), lr=self.config['lr'],
+        momentum=self.config['momentum'],
+        weight_decay=self.config['weight_decay'])
+      lr_decay = lr_scheduler.CosineAnnealingLR(
+        optimizer, T_max=self.config['epochs'])
+    elif self.config['optim'] == 'Adam':
+      optimizer = torch.optim.Adam(self.net.parameters(),
+                                   lr=self.config['lr'],
+                                   weight_decay=self.config['weight_decay'])
+    elif self.config['optim'] == 'Adadelta':
+      optimizer = torch.optim.Adadelta(self.net.parameters(),
+                                   lr=self.config['lr'],
+                                   weight_decay=self.config['weight_decay'])
 
     train_dataset = DiseaseDataset('train', self.config)
     train_loader = DataLoader(
@@ -75,9 +83,10 @@ class Model:
     best_acc = 0
     best_epoch = 0
     for epoch_id in range(self.config['epochs']):
-      lr_decay.step()
-      if self.config['logger']:
-        self.logger.info("Epoch {}'s LR is {}".format(epoch_id, optimizer.param_groups[0]['lr']))
+      if self.config['optim'] == 'SGD':
+        lr_decay.step()
+        if self.config['logger']:
+          self.logger.info("Epoch {}'s LR is {}".format(epoch_id, optimizer.param_groups[0]['lr']))
 
       train_loss = 0
       train_acc = 0
