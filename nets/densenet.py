@@ -58,7 +58,7 @@ class Transition(nn.Module):
 
 
 class DenseNet(nn.Module):
-  def __init__(self, growth_rate, depth, reduction, n_classes, bottleneck):
+  def __init__(self, growth_rate, depth, reduction, n_classes, bottleneck, keep_prob=0.5):
     super(DenseNet, self).__init__()
 
     nDenseBlocks = (depth - 5) // 4
@@ -90,6 +90,7 @@ class DenseNet(nn.Module):
     nChannels += nDenseBlocks * growth_rate
 
     self.bn1 = nn.BatchNorm2d(nChannels)
+    self.dropout = nn.Dropout(p=keep_prob)
     self.fc = nn.Linear(nChannels, n_classes)
 
     for m in self.modules():
@@ -119,7 +120,7 @@ class DenseNet(nn.Module):
     out = self.trans3(self.dense3(out))
     out = self.dense4(out)
     out = F.avg_pool2d(F.relu(self.bn1(out)), 9, 9)
-    out = F.dropout(out, p=0.5, training=self.training)
+    out = self.dropout(out)
     out = out.view(out.size(0), -1)
     out = self.fc(out)
     return out

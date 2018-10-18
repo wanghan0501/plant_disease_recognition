@@ -93,7 +93,8 @@ class Bottleneck(nn.Module):
 
 class ResNetV2SN(nn.Module):
 
-  def __init__(self, block, layers, num_classes=1000, using_moving_average=True, keep_prob=0.5):
+  def __init__(self, block, layers, task1_num_classes=1000, task2_num_classes=2, using_moving_average=True,
+               keep_prob=0.5):
     self.inplanes = 64
     self.using_moving_average = using_moving_average
     super(ResNetV2SN, self).__init__()
@@ -109,7 +110,8 @@ class ResNetV2SN(nn.Module):
     self.sn_out = sn.SwitchNorm(512 * 4, using_moving_average=self.using_moving_average)
     self.avgpool = nn.AvgPool2d(7, stride=1)
     self.drouput = nn.Dropout(p=keep_prob)
-    self.fc = nn.Linear(512 * block.expansion, num_classes)
+    self.task1 = nn.Linear(512 * block.expansion, task1_num_classes)
+    self.task2 = nn.Linear(512 * block.expansion, task2_num_classes)
 
     for m in self.modules():
       if isinstance(m, nn.Conv2d):
@@ -148,9 +150,10 @@ class ResNetV2SN(nn.Module):
     x = self.avgpool(x)
     x = x.view(x.size(0), -1)
     x = self.drouput(x)
-    x = self.fc(x)
+    x1 = self.task1(x)
+    x2 = self.task2(x)
 
-    return x
+    return x1, x2
 
 
 def resnetv2sn18(**kwargs):

@@ -10,9 +10,18 @@ import re
 
 import torch
 
-from models.resnet50v2_sn_model import Model
 from utils.gpu import set_gpu
 from utils.parse import parse_yaml
+
+
+def str2bool(v):
+  if v.lower() in ('yes', 'true', 't', 'y', '1'):
+    return True
+  elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+    return False
+  else:
+    raise argparse.ArgumentTypeError('Unsupported value encountered.')
+
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='Plant Disease Recognition')
@@ -20,8 +29,12 @@ if __name__ == '__main__':
                       help='random seed for training. default=22')
   parser.add_argument('--gpu', default='0', type=str,
                       help='use gpu device. default: 0')
-  parser.add_argument('--model', default='all', type=str,
+  parser.add_argument('--model', default='species', type=str,
+                      choices=['apple', 'cherry', 'citrus', 'corn', 'grape',
+                               'peach', 'potato', 'strawberry', 'pepper', 'tomato'],
                       help='select one model to train. default: all')
+  parser.add_argument('--use_multitask', type=str2bool, default=False,
+                      help='use multitask to improve performance. default: False')
 
   args = parser.parse_args()
 
@@ -31,7 +44,7 @@ if __name__ == '__main__':
   torch.cuda.manual_seed_all(args.seed)
 
   config = parse_yaml()
-  config = config['pepper']
+  config = config[args.model]
   # model = Model(config)
   # ckpt = torch.load('pretrained/resnet50v2_sn.pth')
   # pretrained_dict = ckpt['state_dict']
@@ -44,13 +57,30 @@ if __name__ == '__main__':
   #     model_dict[cur_key] = pretrained_dict[key]
   # model_dict = model.net.load_state_dict(model_dict, strict=False)
   # model.train()
-  model = Model(config)
-  ckpt = torch.load('multi_task_ckpt/species/2018Oct16-183710/33.pth')
-  model_dict = model.net.state_dict()
-  patten = re.compile(r'(?!fc)')
-  for key in list(ckpt.keys()):
-    res = patten.match(key)
-    if res:
-      model_dict[key] = ckpt[key]
-  model_dict = model.net.load_state_dict(model_dict, strict=False)
-  model.train()
+
+  if args.use_multitask:
+    from models.resnet50v2_sn_multitask_model import Model
+
+    model = Model(config)
+    ckpt = torch.load('multi_task_ckpt/species/2018Oct16-183710/33.pth')
+    model_dict = model.net.state_dict()
+    patten = re.compile(r'(?!(task1|task2))')
+    for key in list(ckpt.keys()):
+      res = patten.match(key)
+      if res:
+        model_dict[key] = ckpt[key]
+    model_dict = model.net.load_state_dict(model_dict, strict=False)
+    model.train()
+  else:
+    from models.resnet50v2_sn_model import Model
+
+    model = Model(config)
+    ckpt = torch.load('multi_task_ckpt/species/2018Oct16-183710/33.pth')
+    model_dict = model.net.state_dict()
+    patten = re.compile(r'(?!fc)')
+    for key in list(ckpt.keys()):
+      res = patten.match(key)
+      if res:
+        model_dict[key] = ckpt[key]
+    model_dict = model.net.load_state_dict(model_dict, strict=False)
+    model.train()
