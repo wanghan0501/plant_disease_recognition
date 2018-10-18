@@ -80,7 +80,7 @@ apple:
 
   # dataloader
   worker: 0
-  batch_size: 16
+  batch_size: 32
   ckpt_path: multi_task_ckpt/apple
   transform_mean: [0.39883098, 0.48478258, 0.46141425]
   transform_std:  [0.21294028, 0.17201832, 0.1934495]
@@ -192,13 +192,13 @@ grape:
 citrus:
   # train
   epochs: 100
-  lr: 0.005
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
   logger: True
-  optim: SGD
-  keep_prob: 0.5
+  optim: Adam
+  keep_prob: 0.35
   multitask_num_classes:
     task1: 3
     task2: 2
@@ -356,12 +356,12 @@ strawberry:
 tomato:
   # train
   epochs: 100
-  lr: 0.005
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
   logger: True
-  optim: SGD
+  optim: Adam
   keep_prob: 0.5
   multitask_num_classes:
     task1: 20
