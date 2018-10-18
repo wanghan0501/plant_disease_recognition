@@ -35,18 +35,25 @@ class DiseaseDataset(Dataset):
       prefix = self.config['validate_image_prefix']
     image_path = os.path.join(prefix, item['image_id'])
     image = Image.open(image_path)
-    #label = item['disease_class']
+    # label = item['disease_class']
     label = item['second']
 
-    compose = transforms.Compose([
-      transforms.Resize([224, 224]),
-      transforms.RandomCrop([224, 224], padding=24),
-      transforms.RandomVerticalFlip(p=0.5),
-      transforms.RandomHorizontalFlip(p=0.5),
-      transforms.RandomRotation(degrees=15),
-      transforms.ToTensor(),
-      transforms.Normalize(mean=self.config['transform_mean'], std=self.config['transform_std'])
-    ])
+    if self.phase == 'train':
+      compose = transforms.Compose([
+        transforms.Resize([224, 224]),
+        transforms.RandomCrop([224, 224], padding=24),
+        transforms.RandomVerticalFlip(p=0.5),
+        transforms.RandomHorizontalFlip(p=0.5),
+        transforms.RandomRotation(degrees=15),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=self.config['transform_mean'], std=self.config['transform_std'])
+      ])
+    else:
+      compose = transforms.Compose([
+        transforms.Resize([224, 224]),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=self.config['transform_mean'], std=self.config['transform_std'])
+      ])
 
     return compose(image), label
 

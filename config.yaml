@@ -6,7 +6,8 @@ whole:
   momentum: 0.9
   use_cuda: True
   logger: True
-  optim: Adam
+  optim: SGD
+  keep_prob: 0.5
 
   # dataset
   num_classes: 61
@@ -34,7 +35,8 @@ species:
   momentum: 0.9
   use_cuda: True
   logger: True
-  optim: Adam
+  optim: SGD
+  keep_prob: 0.5
 
   # dataset
   num_classes: 10
@@ -58,12 +60,13 @@ species:
 apple:
   # train
   epochs: 100
-  lr: 0.01
+  lr: 0.005
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
   logger: True
-  optim: Adam
+  optim: SGD
+  keep_prob: 0.5
 
   # dataset
   num_classes: 6
@@ -82,3 +85,272 @@ apple:
   # tensorboard
   use_tensorboard: True
   run_path: multi_task_run/apple
+
+
+cherry:
+  # train
+  epochs: 100
+  lr: 0.005
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+  optim: SGD
+  keep_prob: 0.5
+
+  # dataset
+  num_classes: 3
+  train_label_path: data/mutil_task_annotation/cherry/cherry_train.json
+  validate_label_path: data/mutil_task_annotation/cherry/cherry_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/cherry
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/cherry
+
+
+corn:
+  # train
+  epochs: 100
+  lr: 0.005
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+  optim: SGD
+  keep_prob: 0.5
+
+  # dataset
+  num_classes: 8
+  train_label_path: data/mutil_task_annotation/corn/corn_train.json
+  validate_label_path: data/mutil_task_annotation/corn/corn_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/corn
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/corn
+
+
+grape:
+  # train
+  epochs: 100
+  lr: 0.005
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+  optim: SGD
+  keep_prob: 0.5
+
+  # dataset
+  num_classes: 7
+  train_label_path: data/mutil_task_annotation/grape/grape_train.json
+  validate_label_path: data/mutil_task_annotation/grape/grape_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/grape
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/grape
+
+
+citrus:
+  # train
+  epochs: 100
+  lr: 0.005
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+  optim: SGD
+  keep_prob: 0.5
+
+  # dataset
+  num_classes: 3
+  train_label_path: data/mutil_task_annotation/citrus/citrus_train.json
+  validate_label_path: data/mutil_task_annotation/citrus/citrus_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/citrus
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/citrus
+
+peach:
+  # train
+  epochs: 100
+  lr: 0.005
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+  optim: SGD
+  keep_prob: 0.5
+
+  # dataset
+  num_classes: 3
+  train_label_path: data/mutil_task_annotation/peach/peach_train.json
+  validate_label_path: data/mutil_task_annotation/peach/peach_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/peach
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/peach
+
+
+pepper:
+  # train
+  epochs: 100
+  lr: 0.005
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+  optim: SGD
+  keep_prob: 0.5
+
+  # dataset
+  num_classes: 3
+  train_label_path: data/mutil_task_annotation/pepper/pepper_train.json
+  validate_label_path: data/mutil_task_annotation/pepper/pepper_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/pepper
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/pepper
+
+
+potato:
+  # train
+  epochs: 100
+  lr: 0.005
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+  optim: SGD
+  keep_prob: 0.5
+
+  # dataset
+  num_classes: 5
+  train_label_path: data/mutil_task_annotation/potato/potato_train.json
+  validate_label_path: data/mutil_task_annotation/potato/potato_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/potato
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/potato
+
+
+strawberry:
+  # train
+  epochs: 100
+  lr: 0.005
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+  optim: SGD
+  keep_prob: 0.5
+
+  # dataset
+  num_classes: 3
+  train_label_path: data/mutil_task_annotation/strawberry/strawberry_train.json
+  validate_label_path: data/mutil_task_annotation/strawberry/strawberry_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/strawberry
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/strawberry
+
+
+tomato:
+  # train
+  epochs: 100
+  lr: 0.005
+  weight_decay: 0.0001
+  momentum: 0.9
+  use_cuda: True
+  logger: True
+  optim: SGD
+  keep_prob: 0.5
+
+  # dataset
+  num_classes: 20
+  train_label_path: data/mutil_task_annotation/tomato/tomato_train.json
+  validate_label_path: data/mutil_task_annotation/tomato/tomato_validate.json
+  train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
+  validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+
+  # dataloader
+  worker: 0
+  batch_size: 32
+  ckpt_path: multi_task_ckpt/tomato
+  transform_mean: [0.39883098, 0.48478258, 0.46141425]
+  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+
+  # tensorboard
+  use_tensorboard: True
+  run_path: multi_task_run/tomato

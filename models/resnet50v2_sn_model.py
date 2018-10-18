@@ -25,7 +25,7 @@ from utils.log import Logger
 class Model:
 
   def __init__(self, config):
-    self.net = resnetv2sn50(num_classes=config['num_classes'])
+    self.net = resnetv2sn50(num_classes=config['num_classes'],keep_prob=config['keep_prob'])
     self.config = config
     self.epochs = config['epochs']
     self.use_cuda = config['use_cuda']
@@ -34,9 +34,6 @@ class Model:
 
     run_timestamp = datetime.now().strftime("%Y%b%d-%H%M%S")
     self.ckpt_path = os.path.join(config['ckpt_path'], run_timestamp)
-    if not os.path.exists(self.ckpt_path):
-      os.makedirs(self.ckpt_path)
-
     if config['logger']:
       if not os.path.exists(self.ckpt_path):
         os.makedirs(self.ckpt_path)
@@ -56,10 +53,10 @@ class Model:
     criterion = nn.CrossEntropyLoss()
 
     if self.config['optim'] == 'SGD':
-      optimizer = torch.optim.SGD(
-        self.net.parameters(), lr=self.config['lr'],
-        momentum=self.config['momentum'],
-        weight_decay=self.config['weight_decay'])
+      optimizer = torch.optim.SGD(self.net.parameters(),
+                                  lr=self.config['lr'],
+                                  momentum=self.config['momentum'],
+                                  weight_decay=self.config['weight_decay'])
       lr_decay = lr_scheduler.CosineAnnealingLR(
         optimizer, T_max=self.config['epochs'])
     elif self.config['optim'] == 'Adam':
@@ -68,8 +65,8 @@ class Model:
                                    weight_decay=self.config['weight_decay'])
     elif self.config['optim'] == 'Adadelta':
       optimizer = torch.optim.Adadelta(self.net.parameters(),
-                                   lr=self.config['lr'],
-                                   weight_decay=self.config['weight_decay'])
+                                       lr=self.config['lr'],
+                                       weight_decay=self.config['weight_decay'])
 
     train_dataset = DiseaseDataset('train', self.config)
     train_loader = DataLoader(

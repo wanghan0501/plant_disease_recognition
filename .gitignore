@@ -14,3 +14,4 @@ multi_task_run/
 pretrained/
 __MACOSX/
 **/._.DS_Store
+submit/

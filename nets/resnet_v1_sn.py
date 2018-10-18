@@ -94,7 +94,7 @@ class Bottleneck(nn.Module):
 
 class ResNetV1SN(nn.Module):
 
-  def __init__(self, block, layers, num_classes=1000, using_moving_average=True, last_gamma=True):
+  def __init__(self, block, layers, num_classes=1000, using_moving_average=True, last_gamma=True,keep_prob=0.5):
     self.inplanes = 64
     self.using_moving_average = using_moving_average
     super(ResNetV1SN, self).__init__()
@@ -108,7 +108,7 @@ class ResNetV1SN(nn.Module):
     self.layer3 = self._make_layer(block, 256, layers[2], stride=2, last_gamma=last_gamma)
     self.layer4 = self._make_layer(block, 512, layers[3], stride=2, last_gamma=last_gamma)
     self.avgpool = nn.AvgPool2d(7, stride=1)
-    self.drouput = nn.Dropout(p=0.5)
+    self.drouput = nn.Dropout(p=keep_prob)
     self.fc = nn.Linear(512 * block.expansion, num_classes)
 
     for m in self.modules():

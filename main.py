@@ -31,7 +31,7 @@ if __name__ == '__main__':
   torch.cuda.manual_seed_all(args.seed)
 
   config = parse_yaml()
-  config = config['apple']
+  config = config['pepper']
   # model = Model(config)
   # ckpt = torch.load('pretrained/resnet50v2_sn.pth')
   # pretrained_dict = ckpt['state_dict']
@@ -45,7 +45,7 @@ if __name__ == '__main__':
   # model_dict = model.net.load_state_dict(model_dict, strict=False)
   # model.train()
   model = Model(config)
-  ckpt = torch.load('multi_task_ckpt/2018Oct16-183710/33.pth')
+  ckpt = torch.load('multi_task_ckpt/species/2018Oct16-183710/33.pth')
   model_dict = model.net.state_dict()
   patten = re.compile(r'(?!fc)')
   for key in list(ckpt.keys()):
