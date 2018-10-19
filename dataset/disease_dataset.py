@@ -40,11 +40,10 @@ class DiseaseDataset(Dataset):
 
     if self.phase == 'train':
       compose = transforms.Compose([
-        transforms.Resize([224, 224]),
-        transforms.RandomCrop([224, 224], padding=24),
+        transforms.RandomRotation(degrees=15),
+        transforms.RandomResizedCrop(224, scale=(0.7, 1.0)),
         transforms.RandomVerticalFlip(p=0.5),
         transforms.RandomHorizontalFlip(p=0.5),
-        transforms.RandomRotation(degrees=15),
         transforms.ToTensor(),
         transforms.Normalize(mean=self.config['transform_mean'], std=self.config['transform_std'])
       ])

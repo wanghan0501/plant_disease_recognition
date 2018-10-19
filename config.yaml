@@ -67,6 +67,7 @@ apple:
   logger: True
   optim: SGD
   keep_prob: 0.5
+  alpha: 0.5
   multitask_num_classes:
     task1: 6
     task2: 4
@@ -100,6 +101,7 @@ cherry:
   logger: True
   optim: SGD
   keep_prob: 0.5
+  alpha: 0.5
   multitask_num_classes:
     task1: 3
     task2: 2
@@ -133,6 +135,7 @@ corn:
   logger: True
   optim: SGD
   keep_prob: 0.5
+  alpha: 0.5
   multitask_num_classes:
     task1: 8
     task2: 5
@@ -166,6 +169,7 @@ grape:
   logger: True
   optim: SGD
   keep_prob: 0.5
+  alpha: 0.5
   multitask_num_classes:
     task1: 7
     task2: 4
@@ -191,14 +195,15 @@ grape:
 
 citrus:
   # train
-  epochs: 100
-  lr: 0.01
+  epochs: 150
+  lr: 0.005
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
   logger: True
-  optim: Adam
+  optim: SGD
   keep_prob: 0.35
+  alpha: 0.25
   multitask_num_classes:
     task1: 3
     task2: 2
@@ -231,6 +236,7 @@ peach:
   logger: True
   optim: SGD
   keep_prob: 0.5
+  alpha: 0.5
   multitask_num_classes:
     task1: 3
     task2: 2
@@ -264,6 +270,7 @@ pepper:
   logger: True
   optim: SGD
   keep_prob: 0.5
+  alpha: 0.5
   multitask_num_classes:
     task1: 3
     task2: 2
@@ -297,6 +304,7 @@ potato:
   logger: True
   optim: SGD
   keep_prob: 0.5
+  alpha: 0.5
   multitask_num_classes:
     task1: 5
     task2: 3
@@ -330,6 +338,7 @@ strawberry:
   logger: True
   optim: SGD
   keep_prob: 0.5
+  alpha: 0.5
   multitask_num_classes:
     task1: 3
     task2: 2
@@ -355,14 +364,15 @@ strawberry:
 
 tomato:
   # train
-  epochs: 100
-  lr: 0.01
+  epochs: 150
+  lr: 0.005
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
   logger: True
-  optim: Adam
-  keep_prob: 0.5
+  optim: SGD
+  keep_prob: 0.35
+  alpha: 0.25
   multitask_num_classes:
     task1: 20
     task2: 11

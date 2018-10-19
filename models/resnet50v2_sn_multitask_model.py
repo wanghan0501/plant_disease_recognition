@@ -31,6 +31,7 @@ class Model:
     self.config = config
     self.epochs = config['epochs']
     self.use_cuda = config['use_cuda']
+    self.alpha = config['alpha']
     if self.use_cuda:
       self.net = self.net.cuda()
 
@@ -101,7 +102,7 @@ class Model:
         loss1 = criterion1(logits1, target1)
         prob2 = F.softmax(logits2, dim=1)
         loss2 = criterion2(logits2, target2)
-        loss = loss1 + loss2
+        loss = loss1 + self.alpha * loss2
         loss.backward()
         optimizer.step()
         train_loss += loss.data.item()
