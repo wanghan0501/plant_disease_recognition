@@ -30,7 +30,7 @@ if __name__ == '__main__':
   parser.add_argument('--gpu', default='0', type=str,
                       help='use gpu device. default: 0')
   parser.add_argument('--model', default='densenet121', type=str,
-                      choices=['densenet121', 'resnet50v2_sn'])
+                      choices=['densenet121', 'densenet201', 'resnet50v2_sn'])
   parser.add_argument('--task', default='apple', type=str,
                       choices=['species', 'apple', 'cherry', 'citrus', 'corn', 'grape',
                                'peach', 'potato', 'strawberry', 'pepper', 'tomato'],
@@ -77,6 +77,7 @@ if __name__ == '__main__':
 
     elif args.model == 'densenet121':
       from models.densenet121_multitask_model import Model
+
       model = Model(config)
       ckpt = torch.load('multi_task_ckpt/species/2018Oct20-170328/63.pth')
       model_dict = model.net.state_dict()
@@ -97,6 +98,19 @@ if __name__ == '__main__':
       #     model_dict[key] = ckpt[key]
       # model_dict = model.net.load_state_dict(model_dict, strict=False)
       # model.train()
+    elif args.model == 'densenet201':
+      from models.densenet201_multitask_model import Model
+
+      model = Model(config)
+      ckpt = torch.load('pretrained/densenet201.pth')
+      model_dict = model.net.state_dict()
+      patten = re.compile(r'(?!(task1|task2))')
+      for key in list(ckpt.keys()):
+        res = patten.match(key)
+        if res:
+          model_dict[key] = ckpt[key]
+      model_dict = model.net.load_state_dict(model_dict, strict=False)
+      model.train()
   else:
     if args.model == 'resnet50v2_sn':
       from models.resnet50v2_sn_model import Model
@@ -118,6 +132,19 @@ if __name__ == '__main__':
 
       model = Model(config)
       ckpt = torch.load('pretrained/densenet121.pth')
+      model_dict = model.net.state_dict()
+      patten = re.compile(r'(?!classifier)')
+      for key in list(ckpt.keys()):
+        res = patten.match(key)
+        if res:
+          model_dict[key] = ckpt[key]
+      model_dict = model.net.load_state_dict(model_dict, strict=False)
+      model.train()
+    elif args.model == 'densenet201':
+      from models.densenet201_model import Model
+
+      model = Model(config)
+      ckpt = torch.load('pretrained/densenet201.pth')
       model_dict = model.net.state_dict()
       patten = re.compile(r'(?!classifier)')
       for key in list(ckpt.keys()):
