@@ -68,12 +68,12 @@ apple:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.5
-  multitask_num_classes:
-    task1: 6
-    task2: 4
 
   # dataset
   num_classes: 6
+  multitask_num_classes:
+    task1: 6
+    task2: 4
   train_label_path: data/mutil_task_annotation/apple/new_apple_train.json
   validate_label_path: data/mutil_task_annotation/apple/new_apple_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
@@ -102,12 +102,12 @@ cherry:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.5
-  multitask_num_classes:
-    task1: 3
-    task2: 2
 
   # dataset
   num_classes: 3
+  multitask_num_classes:
+    task1: 3
+    task2: 2
   train_label_path: data/mutil_task_annotation/cherry/new_cherry_train.json
   validate_label_path: data/mutil_task_annotation/cherry/new_cherry_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
@@ -136,12 +136,12 @@ corn:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.5
-  multitask_num_classes:
-    task1: 8
-    task2: 5
 
   # dataset
   num_classes: 8
+  multitask_num_classes:
+    task1: 8
+    task2: 5
   train_label_path: data/mutil_task_annotation/corn/new_corn_train.json
   validate_label_path: data/mutil_task_annotation/corn/new_corn_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
@@ -170,12 +170,12 @@ grape:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.5
-  multitask_num_classes:
-    task1: 7
-    task2: 4
 
   # dataset
   num_classes: 7
+  multitask_num_classes:
+    task1: 7
+    task2: 4
   train_label_path: data/mutil_task_annotation/grape/new_grape_train.json
   validate_label_path: data/mutil_task_annotation/grape/new_grape_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
@@ -204,12 +204,12 @@ citrus:
   optim: SGD
   keep_prob: 0.35
   alpha: 0.25
-  multitask_num_classes:
-    task1: 3
-    task2: 2
 
   # dataset
   num_classes: 3
+  multitask_num_classes:
+    task1: 3
+    task2: 2
   train_label_path: data/mutil_task_annotation/citrus/new_citrus_train.json
   validate_label_path: data/mutil_task_annotation/citrus/new_citrus_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
@@ -237,12 +237,12 @@ peach:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.5
-  multitask_num_classes:
-    task1: 3
-    task2: 2
 
   # dataset
   num_classes: 3
+  multitask_num_classes:
+    task1: 3
+    task2: 2
   train_label_path: data/mutil_task_annotation/peach/new_peach_train.json
   validate_label_path: data/mutil_task_annotation/peach/new_peach_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
@@ -271,12 +271,12 @@ pepper:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.5
-  multitask_num_classes:
-    task1: 3
-    task2: 2
 
   # dataset
   num_classes: 3
+  multitask_num_classes:
+    task1: 3
+    task2: 2
   train_label_path: data/mutil_task_annotation/pepper/new_pepper_train.json
   validate_label_path: data/mutil_task_annotation/pepper/new_pepper_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
@@ -305,12 +305,12 @@ potato:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.5
-  multitask_num_classes:
-    task1: 5
-    task2: 3
 
   # dataset
   num_classes: 5
+  multitask_num_classes:
+    task1: 5
+    task2: 3
   train_label_path: data/mutil_task_annotation/potato/new_potato_train.json
   validate_label_path: data/mutil_task_annotation/potato/new_potato_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
@@ -339,12 +339,12 @@ strawberry:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.5
-  multitask_num_classes:
-    task1: 3
-    task2: 2
 
   # dataset
   num_classes: 3
+  multitask_num_classes:
+    task1: 3
+    task2: 2
   train_label_path: data/mutil_task_annotation/strawberry/new_strawberry_train.json
   validate_label_path: data/mutil_task_annotation/strawberry/new_strawberry_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
@@ -364,21 +364,21 @@ strawberry:
 
 tomato:
   # train
-  epochs: 150
+  epochs: 100
   lr: 0.005
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
   logger: True
   optim: SGD
-  keep_prob: 0.35
-  alpha: 0.25
-  multitask_num_classes:
-    task1: 20
-    task2: 11
+  keep_prob: 0.5
+  alpha: 0.5
 
   # dataset
   num_classes: 20
+  multitask_num_classes:
+    task1: 20
+    task2: 11
   train_label_path: data/mutil_task_annotation/tomato/new_tomato_train.json
   validate_label_path: data/mutil_task_annotation/tomato/new_tomato_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
