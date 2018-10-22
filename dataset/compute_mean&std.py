@@ -30,7 +30,7 @@ for i in range(3):
   pixels = data[:, :, :, i].ravel()
   means.append(np.mean(pixels))
   stdevs.append(np.std(pixels))
-
-print("means: {}".format(means))
-print("stdevs: {}".format(stdevs))
-print('transforms.Normalize(mean = {}, std = {})'.format(means, stdevs))
+# convert GBR (cv2) to RGB (PIL)
+print("means: {}".format(means[::-1]))
+print("stdevs: {}".format(stdevs[::-1]))
+print('transforms.Normalize(mean = {}, std = {})'.format(means[::-1], stdevs[::-1]))

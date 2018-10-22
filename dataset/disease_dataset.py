@@ -36,8 +36,8 @@ class DiseaseDataset(Dataset):
     image_path = os.path.join(prefix, item['image_id'])
     image = Image.open(image_path)
     # label = item['disease_class']
-    label = item['second']
-    # label = item['first']
+    # label = item['second']
+    label = item['first']
 
     if self.phase == 'train':
       compose = transforms.Compose([

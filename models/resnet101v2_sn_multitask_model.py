@@ -18,14 +18,14 @@ from torch.optim import lr_scheduler
 from torch.utils.data import DataLoader
 
 from dataset.disease_multitask_dataset import DiseaseDataset
-from nets.resnet_v2_sn_multitask import resnetv2sn50
+from nets.resnet_v2_sn_multitask import resnetv2sn101
 from utils.log import Logger
 
 
 class Model:
 
   def __init__(self, config):
-    self.net = resnetv2sn50(task1_num_classes=config['multitask_num_classes']['task1'],
+    self.net = resnetv2sn101(task1_num_classes=config['multitask_num_classes']['task1'],
                             task2_num_classes=config['multitask_num_classes']['task2'],
                             keep_prob=config['keep_prob'])
     self.config = config
@@ -41,7 +41,7 @@ class Model:
       if not os.path.exists(self.ckpt_path):
         os.makedirs(self.ckpt_path)
 
-      self.logger = Logger(os.path.join(self.ckpt_path, 'resnet50v2_sn_multitask.log')).get_logger()
+      self.logger = Logger(os.path.join(self.ckpt_path, 'resnet101v2_sn_multitask.log')).get_logger()
       self.logger.info(">>>The net is:")
       self.logger.info(self.net)
       self.logger.info(">>>The config is:")

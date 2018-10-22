@@ -20,8 +20,8 @@ whole:
   worker: 0
   batch_size: 32
   ckpt_path: ckpt
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -49,8 +49,8 @@ species:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/species
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -83,8 +83,8 @@ apple:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/apple
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -117,8 +117,8 @@ cherry:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/cherry
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -151,8 +151,8 @@ corn:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/corn
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -185,8 +185,8 @@ grape:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/grape
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -219,8 +219,8 @@ citrus:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/citrus
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -252,8 +252,8 @@ peach:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/peach
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -286,8 +286,8 @@ pepper:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/pepper
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -320,8 +320,8 @@ potato:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/potato
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -354,8 +354,8 @@ strawberry:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/strawberry
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
@@ -388,8 +388,8 @@ tomato:
   worker: 0
   batch_size: 32
   ckpt_path: multi_task_ckpt/tomato
-  transform_mean: [0.39883098, 0.48478258, 0.46141425]
-  transform_std:  [0.21294028, 0.17201832, 0.1934495]
+  transform_mean: [0.46141425, 0.48478258, 0.39883098]
+  transform_std:  [0.1934495, 0.17201832, 0.21294028]
 
   # tensorboard
   use_tensorboard: True
