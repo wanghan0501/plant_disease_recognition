@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-  
 
 """
-Created by Wang Han on 2018/7/4 15:36.
+Created by Wang Han on 2018/10/23 12:51.
 E-mail address is hanwang.0501@gmail.com.
 Copyright © 2018 Wang Han. SCU. All Rights Reserved.
 """
@@ -18,14 +18,14 @@ from torch.optim import lr_scheduler
 from torch.utils.data import DataLoader
 
 from dataset.disease_dataset import DiseaseDataset
-from nets.densenet import densenet121
+from nets.resnet_v1_sn import resnetv1sn50
 from utils.log import Logger
 
 
 class Model:
 
     def __init__(self, config):
-        self.net = densenet121(num_classes=config['num_classes'])
+        self.net = resnetv1sn50(num_classes=config['num_classes'], keep_prob=config['keep_prob'])
         self.config = config
         self.epochs = config['epochs']
         self.use_cuda = config['use_cuda']
@@ -38,7 +38,7 @@ class Model:
             if not os.path.exists(self.ckpt_path):
                 os.makedirs(self.ckpt_path)
 
-            self.logger = Logger(os.path.join(self.ckpt_path, 'densenet121.log')).get_logger()
+            self.logger = Logger(os.path.join(self.ckpt_path, 'resnet50v1_sn.log')).get_logger()
             self.logger.info(">>>The net is:")
             self.logger.info(self.net)
             self.logger.info(">>>The config is:")

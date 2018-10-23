@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-  
 
 """
-Created by Wang Han on 2018/7/4 15:36.
+Created by Wang Han on 2018/10/23 12:51.
 E-mail address is hanwang.0501@gmail.com.
 Copyright © 2018 Wang Han. SCU. All Rights Reserved.
 """
@@ -17,18 +17,21 @@ from tensorboardX import SummaryWriter
 from torch.optim import lr_scheduler
 from torch.utils.data import DataLoader
 
-from dataset.disease_dataset import DiseaseDataset
-from nets.densenet import densenet121
+from dataset.disease_multitask_dataset import DiseaseDataset
+from nets.resnet_v1_sn_multitask import resnetv1sn50
 from utils.log import Logger
 
 
 class Model:
 
     def __init__(self, config):
-        self.net = densenet121(num_classes=config['num_classes'])
+        self.net = resnetv1sn50(task1_num_classes=config['multitask_num_classes']['task1'],
+                                task2_num_classes=config['multitask_num_classes']['task2'],
+                                keep_prob=config['keep_prob'])
         self.config = config
         self.epochs = config['epochs']
         self.use_cuda = config['use_cuda']
+        self.alpha = config['alpha']
         if self.use_cuda:
             self.net = self.net.cuda()
 
@@ -38,7 +41,7 @@ class Model:
             if not os.path.exists(self.ckpt_path):
                 os.makedirs(self.ckpt_path)
 
-            self.logger = Logger(os.path.join(self.ckpt_path, 'densenet121.log')).get_logger()
+            self.logger = Logger(os.path.join(self.ckpt_path, 'resnet50v1_sn_multitask.log')).get_logger()
             self.logger.info(">>>The net is:")
             self.logger.info(self.net)
             self.logger.info(">>>The config is:")
@@ -50,7 +53,8 @@ class Model:
                 self.writer = SummaryWriter(self.run_path)
 
     def train(self):
-        criterion = nn.CrossEntropyLoss()
+        criterion1 = nn.CrossEntropyLoss()
+        criterion2 = nn.CrossEntropyLoss()
 
         if self.config['optim'] == 'SGD':
             optimizer = torch.optim.SGD(self.net.parameters(),
@@ -88,20 +92,23 @@ class Model:
             train_loss = 0
             train_acc = 0
             self.net.train()
-            for batch_id, (data, target) in enumerate(train_loader):
+            for batch_id, (data, target1, target2) in enumerate(train_loader):
                 if self.use_cuda:
-                    data, target = data.cuda(), target.cuda()
+                    data, target1, target2 = data.cuda(), target1.cuda(), target2.cuda()
 
                 optimizer.zero_grad()
-                logits = self.net(data)
-                prob = F.softmax(logits, dim=1)
-                loss = criterion(logits, target)
+                logits1, logits2 = self.net(data)
+                prob1 = F.softmax(logits1, dim=1)
+                loss1 = criterion1(logits1, target1)
+                prob2 = F.softmax(logits2, dim=1)
+                loss2 = criterion2(logits2, target2)
+                loss = loss1 + self.alpha * loss2
                 loss.backward()
                 optimizer.step()
                 train_loss += loss.data.item()
                 acc = sum(
-                    np.argmax(prob.data.cpu().numpy(), 1) ==
-                    target.data.cpu().numpy()) / float(train_loader.batch_size)
+                    np.argmax(prob1.data.cpu().numpy(), 1) ==
+                    target1.data.cpu().numpy()) / float(train_loader.batch_size)
                 train_acc += acc
             train_acc = train_acc / len(train_loader)
             train_loss = train_loss / len(train_loader)
@@ -140,10 +147,10 @@ class Model:
         valid_acc = 0
         self.net.eval()
         with torch.no_grad():
-            for batch_id, (data, target) in enumerate(valid_loader):
+            for batch_id, (data, target, _) in enumerate(valid_loader):
                 if self.use_cuda:
                     data, target = data.cuda(), target.cuda()
-                logits = self.net(data)
+                logits, _ = self.net(data)
                 prob = F.softmax(logits, dim=1)
                 loss = criterion(logits, target)
                 valid_loss += loss.data.item()
