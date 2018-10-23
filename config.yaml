@@ -36,7 +36,7 @@ species:
   use_cuda: True
   logger: True
   optim: SGD
-  keep_prob: 0.5
+  keep_prob: 0.1
 
   # dataset
   num_classes: 10
@@ -67,7 +67,7 @@ apple:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  alpha: 0.5
+  alpha: 0.1
 
   # dataset
   num_classes: 6
@@ -101,7 +101,7 @@ cherry:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  alpha: 0.5
+  alpha: 0.1
 
   # dataset
   num_classes: 3
@@ -135,7 +135,7 @@ corn:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  alpha: 0.5
+  alpha: 0.1
 
   # dataset
   num_classes: 8
@@ -169,7 +169,7 @@ grape:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  alpha: 0.5
+  alpha: 0.1
 
   # dataset
   num_classes: 7
@@ -203,7 +203,7 @@ citrus:
   logger: True
   optim: SGD
   keep_prob: 0.35
-  alpha: 0.25
+  alpha: 0.1
 
   # dataset
   num_classes: 3
@@ -236,7 +236,7 @@ peach:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  alpha: 0.5
+  alpha: 0.1
 
   # dataset
   num_classes: 3
@@ -270,7 +270,7 @@ pepper:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  alpha: 0.5
+  alpha: 0.1
 
   # dataset
   num_classes: 3
@@ -304,7 +304,7 @@ potato:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  alpha: 0.5
+  alpha: 0.1
 
   # dataset
   num_classes: 5
@@ -338,7 +338,7 @@ strawberry:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  alpha: 0.5
+  alpha: 0.1
 
   # dataset
   num_classes: 3
@@ -372,7 +372,7 @@ tomato:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  alpha: 0.5
+  alpha: 0.1
 
   # dataset
   num_classes: 20
