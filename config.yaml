@@ -17,7 +17,7 @@ whole:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: ckpt
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -46,7 +46,7 @@ species:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/species
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -80,7 +80,7 @@ apple:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/apple
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -114,7 +114,7 @@ cherry:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/cherry
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -148,7 +148,7 @@ corn:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/corn
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -182,7 +182,7 @@ grape:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/grape
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -216,7 +216,7 @@ citrus:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/citrus
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -249,7 +249,7 @@ peach:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/peach
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -283,7 +283,7 @@ pepper:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/pepper
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -317,7 +317,7 @@ potato:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/potato
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -351,7 +351,7 @@ strawberry:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/strawberry
   transform_mean: [0.46141425, 0.48478258, 0.39883098]
@@ -385,7 +385,7 @@ tomato:
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
 
   # dataloader
-  worker: 0
+  worker: 1
   batch_size: 32
   ckpt_path: multi_task_ckpt/tomato
   transform_mean: [0.46141425, 0.48478258, 0.39883098]

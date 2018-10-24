@@ -54,7 +54,7 @@ if __name__ == '__main__':
             from models.resnet50v2_sn_multitask_model import Model
 
             model = Model(config)
-            ckpt = torch.load('multi_task_ckpt/species/2018Oct16-183710/33.pth')
+            ckpt = torch.load('multi_task_ckpt/species/2018Oct22-230251/62.pth')
             model_dict = model.net.state_dict()
             patten = re.compile(r'(?!(task1|task2))')
             for key in list(ckpt.keys()):
@@ -109,7 +109,7 @@ if __name__ == '__main__':
             from models.densenet121_multitask_model import Model
 
             model = Model(config)
-            ckpt = torch.load('multi_task_ckpt/species/2018Oct20-170328/63.pth')
+            ckpt = torch.load('multi_task_ckpt/species/2018Oct22-230249/75.pth')
             model_dict = model.net.state_dict()
             patten = re.compile(r'(?!(task1|task2))')
             for key in list(ckpt.keys()):
@@ -147,17 +147,27 @@ if __name__ == '__main__':
             from models.resnet50v2_sn_model import Model
 
             model = Model(config)
-            ckpt = torch.load('pretrained/resnet50v2_sn.pth')
-            pretrained_dict = ckpt['state_dict']
+            ckpt = torch.load('multi_task_ckpt/species/2018Oct22-230251/62.pth')
             model_dict = model.net.state_dict()
             patten = re.compile(r'(?!fc)')
-            for key in list(pretrained_dict.keys()):
-                cur_key = key[7:]
-                res = patten.match(cur_key)
+            for key in list(ckpt.keys()):
+                res = patten.match(key)
                 if res:
-                    model_dict[cur_key] = pretrained_dict[key]
+                    model_dict[key] = ckpt[key]
             model_dict = model.net.load_state_dict(model_dict, strict=False)
             model.train()
+            # model = Model(config)
+            # ckpt = torch.load('pretrained/resnet50v2_sn.pth')
+            # pretrained_dict = ckpt['state_dict']
+            # model_dict = model.net.state_dict()
+            # patten = re.compile(r'(?!fc)')
+            # for key in list(pretrained_dict.keys()):
+            #     cur_key = key[7:]
+            #     res = patten.match(cur_key)
+            #     if res:
+            #         model_dict[cur_key] = pretrained_dict[key]
+            # model_dict = model.net.load_state_dict(model_dict, strict=False)
+            # model.train()
         elif args.model == 'resnet101v2_sn':
             from models.resnet101v2_sn_model import Model
 
@@ -192,7 +202,7 @@ if __name__ == '__main__':
             from models.densenet121_model import Model
 
             model = Model(config)
-            ckpt = torch.load('pretrained/densenet121.pth')
+            ckpt = torch.load('multi_task_ckpt/species/2018Oct22-230249/75.pth')
             model_dict = model.net.state_dict()
             patten = re.compile(r'(?!classifier)')
             for key in list(ckpt.keys()):
@@ -201,6 +211,16 @@ if __name__ == '__main__':
                     model_dict[key] = ckpt[key]
             model_dict = model.net.load_state_dict(model_dict, strict=False)
             model.train()
+            # model = Model(config)
+            # ckpt = torch.load('pretrained/densenet121.pth')
+            # model_dict = model.net.state_dict()
+            # patten = re.compile(r'(?!classifier)')
+            # for key in list(ckpt.keys()):
+            #     res = patten.match(key)
+            #     if res:
+            #         model_dict[key] = ckpt[key]
+            # model_dict = model.net.load_state_dict(model_dict, strict=False)
+            # model.train()
         elif args.model == 'densenet201':
             from models.densenet201_model import Model
 
