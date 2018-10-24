@@ -150,7 +150,7 @@ class Model:
                 if self.use_cuda:
                     data, target = data.cuda(), target.cuda()
                 batch_size, ncrops, c, h, w = data.size()
-                logits = self.net(data.view(-1, c, h, w))
+                logits, _ = self.net(data.view(-1, c, h, w))
                 logits_avg = logits.view(batch_size, ncrops, -1).mean(1)
                 prob = F.softmax(logits_avg, dim=1)
                 loss = criterion(logits_avg, target)
@@ -177,7 +177,7 @@ class Model:
             if self.use_cuda:
                 data = data.cuda()
             batch_size, ncrops, c, h, w = data.size()
-            logits = self.net(data.view(-1, c, h, w))
+            logits, _ = self.net(data.view(-1, c, h, w))
             logits_avg = logits.view(batch_size, ncrops, -1).mean(1)
             prob = F.softmax(logits_avg, dim=1)
         return prob

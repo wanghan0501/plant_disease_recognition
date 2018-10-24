@@ -40,7 +40,7 @@ species:
 
   # dataset
   num_classes: 10
-  train_label_path: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/AgriculturalDisease_train_mutilayer.json
+  train_label_path: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/more_AgriculturalDisease_train_mutilayer.json
   validate_label_path: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/AgriculturalDisease_validation_mutilayer.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
@@ -68,13 +68,16 @@ apple:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.1
+  use_classes_weight: True
+  # classes_weight: [1.0, 5.61611374407583, 7.796052631578948, 2.775175644028103, 8.345070422535212, 29.625]
+  classes_weight: [1.0, 13.412322274881516, 18.61842105263158, 2.700381679389313, 19.929577464788736, 70.75]
 
   # dataset
   num_classes: 6
   multitask_num_classes:
     task1: 6
     task2: 4
-  train_label_path: data/mutil_task_annotation/apple/new_apple_train.json
+  train_label_path: data/mutil_task_annotation/apple/more_apple_train.json
   validate_label_path: data/mutil_task_annotation/apple/new_apple_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
@@ -102,13 +105,15 @@ cherry:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.1
-
+  use_classes_weight: True
+  #classes_weight: [1.0, 3.691358024691358, 3.9084967320261437]
+  classes_weight: [1.0, 8.962962962962962, 9.490196078431373]
   # dataset
   num_classes: 3
   multitask_num_classes:
     task1: 3
     task2: 2
-  train_label_path: data/mutil_task_annotation/cherry/new_cherry_train.json
+  train_label_path: data/mutil_task_annotation/cherry/more_cherry_train.json
   validate_label_path: data/mutil_task_annotation/cherry/new_cherry_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
@@ -136,13 +141,16 @@ corn:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.1
+  use_classes_weight: True
+  # classes_weight: [2.167553191489362, 4.267015706806283, 4.880239520958083, 1.6873706004140787, 2.295774647887324, 3.918269230769231, 1.6332665330661322, 1.0]
+  classes_weight: [1.0, 8.052356020942408, 9.209580838323353, 3.1842650103519667, 4.3323943661971835, 7.39423076923077, 3.082164328657315, 1.8871165644171781]
 
   # dataset
   num_classes: 8
   multitask_num_classes:
     task1: 8
     task2: 5
-  train_label_path: data/mutil_task_annotation/corn/new_corn_train.json
+  train_label_path: data/mutil_task_annotation/corn/more_corn_train.json
   validate_label_path: data/mutil_task_annotation/corn/new_corn_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
@@ -170,13 +178,16 @@ grape:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.1
+  use_classes_weight: True
+  # classes_weight: [2.142857142857143, 1.6535433070866143, 1.3636363636363638, 1.2328767123287672, 1.4754098360655739, 10.327868852459016, 1.0]
+  classes_weight: [1.0, 1.8818897637795275, 1.551948051948052, 1.4031311154598824, 1.6791569086651053, 11.754098360655737, 1.138095238095238]
 
   # dataset
   num_classes: 7
   multitask_num_classes:
     task1: 7
     task2: 4
-  train_label_path: data/mutil_task_annotation/grape/new_grape_train.json
+  train_label_path: data/mutil_task_annotation/grape/more_grape_train.json
   validate_label_path: data/mutil_task_annotation/grape/new_grape_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
@@ -214,6 +225,8 @@ citrus:
   validate_label_path: data/mutil_task_annotation/citrus/new_citrus_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
+  use_classes_weight: True
+  classes_weight: [5.100817438692098, 1.0, 1.0184983677910773]
 
   # dataloader
   worker: 1
@@ -237,13 +250,15 @@ peach:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.1
-
+  use_classes_weight: True
+  # classes_weight: [3.414342629482072, 1.0, 1.1129870129870132]
+  classes_weight: [1.402618657937807, 1.0, 1.112987012987013]
   # dataset
   num_classes: 3
   multitask_num_classes:
     task1: 3
     task2: 2
-  train_label_path: data/mutil_task_annotation/peach/new_peach_train.json
+  train_label_path: data/mutil_task_annotation/peach/more_peach_train.json
   validate_label_path: data/mutil_task_annotation/peach/new_peach_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
@@ -271,13 +286,16 @@ pepper:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.1
+  use_classes_weight: True
+  # classes_weight: [1.0, 3.5714285714285716, 2.7188328912466844]
+  classes_weight: [1.0, 8.721254355400697, 6.639257294429709]
 
   # dataset
   num_classes: 3
   multitask_num_classes:
     task1: 3
     task2: 2
-  train_label_path: data/mutil_task_annotation/pepper/new_pepper_train.json
+  train_label_path: data/mutil_task_annotation/pepper/more_pepper_train.json
   validate_label_path: data/mutil_task_annotation/pepper/new_pepper_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
@@ -305,13 +323,16 @@ potato:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.1
+  use_classes_weight: True
+  # classes_weight: [1.0, 7.044334975369458, 2.803921568627451, 5.697211155378486, 3.2062780269058293]
+  classes_weight: [1.0, 7.793103448275862, 3.1019607843137256, 6.302788844621513, 3.5470852017937213]
 
   # dataset
   num_classes: 5
   multitask_num_classes:
     task1: 5
     task2: 3
-  train_label_path: data/mutil_task_annotation/potato/new_potato_train.json
+  train_label_path: data/mutil_task_annotation/potato/more_potato_train.json
   validate_label_path: data/mutil_task_annotation/potato/new_potato_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
@@ -339,13 +360,16 @@ strawberry:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.1
+  use_classes_weight: True
+  # classes_weight: [2.409090909090909, 3.0364583333333335, 1.0]
+  classes_weight: [1.0, 3.635416666666667, 1.1972555746140652]
 
   # dataset
   num_classes: 3
   multitask_num_classes:
     task1: 3
     task2: 2
-  train_label_path: data/mutil_task_annotation/strawberry/new_strawberry_train.json
+  train_label_path: data/mutil_task_annotation/strawberry/more_strawberry_train.json
   validate_label_path: data/mutil_task_annotation/strawberry/new_strawberry_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
@@ -373,13 +397,16 @@ tomato:
   optim: SGD
   keep_prob: 0.5
   alpha: 0.1
+  use_classes_weight: True
+  # classes_weight: [2.047185430463576, 7.752351097178684, 2.560041407867495, 10.52340425531915, 13.587912087912088, 9.852589641434262, 5.59502262443439, 9.367424242424244, 2.2299368800721373, 7.60923076923077, 7.3601190476190474, 8.081699346405228, 14.051136363636363, 5.8741092636579575, 3.064436183395291, 4.562730627306273, 9.125461254612546, 1.7489391796322489, 1.0, 9.475095785440613]
+  classes_weight: [1.0, 8.774294670846395, 2.897515527950311, 11.91063829787234, 15.379120879120878, 11.151394422310757, 6.332579185520362, 10.602272727272727, 2.5238954012623984, 8.612307692307692, 8.330357142857142, 9.147058823529411, 15.903409090909092, 6.648456057007126, 3.4684014869888475, 5.1642066420664205, 10.328413284132841, 1.9794908062234795, 1.1318236959158916, 4.414826498422713]
 
   # dataset
   num_classes: 20
   multitask_num_classes:
     task1: 20
     task2: 11
-  train_label_path: data/mutil_task_annotation/tomato/new_tomato_train.json
+  train_label_path: data/mutil_task_annotation/tomato/more_tomato_train.json
   validate_label_path: data/mutil_task_annotation/tomato/new_tomato_validate.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20180905/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20180905/AgriculturalDisease_validationset/images
