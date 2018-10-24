@@ -12,6 +12,7 @@ import pandas as pd
 import torchvision.transforms as transforms
 from PIL import Image
 from torch.utils.data import Dataset
+import torch
 
 
 class DiseaseDataset(Dataset):
@@ -55,7 +56,16 @@ class DiseaseDataset(Dataset):
                 transforms.Normalize(mean=self.config['transform_mean'], std=self.config['transform_std'])
             ])
 
-        return compose(image), label
+        if self.phase == 'train':
+            return compose(image), label
+        else:
+            image1 = image.transpose(Image.FLIP_LEFT_RIGHT)
+            image2 = image.transpose(Image.FLIP_TOP_BOTTOM)
+            images = [compose(image), compose(image1), compose(image2)]
+            if self.phase == 'validate':
+                return torch.stack(images), label
+            else:
+                return torch.stack(images)
 
     def __len__(self):
         return len(self.data)

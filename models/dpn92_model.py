@@ -143,9 +143,11 @@ class Model:
             for batch_id, (data, target) in enumerate(valid_loader):
                 if self.use_cuda:
                     data, target = data.cuda(), target.cuda()
-                logits = self.net(data)
-                prob = F.softmax(logits, dim=1)
-                loss = criterion(logits, target)
+                batch_size, ncrops, c, h, w = data.size()
+                logits = self.net(data.view(-1, c, h, w))
+                logits_avg = logits.view(batch_size, ncrops, -1).mean(1)
+                prob = F.softmax(logits_avg, dim=1)
+                loss = criterion(logits_avg, target)
                 valid_loss += loss.data.item()
                 acc = sum(
                     np.argmax(prob.data.cpu().numpy(), 1) ==
@@ -168,8 +170,10 @@ class Model:
         with torch.no_grad():
             if self.use_cuda:
                 data = data.cuda()
-            logits = self.net(data)
-            prob = F.softmax(logits, dim=1)
+            batch_size, ncrops, c, h, w = data.size()
+            logits = self.net(data.view(-1, c, h, w))
+            logits_avg = logits.view(batch_size, ncrops, -1).mean(1)
+            prob = F.softmax(logits_avg, dim=1)
         return prob
 
     def load(self, ckpt_path):

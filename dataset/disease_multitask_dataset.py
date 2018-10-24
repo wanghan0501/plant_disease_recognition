@@ -9,6 +9,7 @@ Copyright © 2018 Wang Han. SCU. All Rights Reserved.
 import os
 
 import pandas as pd
+import torch
 import torchvision.transforms as transforms
 from PIL import Image
 from torch.utils.data import Dataset
@@ -54,7 +55,16 @@ class DiseaseDataset(Dataset):
                 transforms.Normalize(mean=self.config['transform_mean'], std=self.config['transform_std'])
             ])
 
-        return compose(image), label1, label2
+        if self.phase == 'train':
+            return compose(image), label1, label2
+        else:
+            image1 = image.transpose(Image.FLIP_LEFT_RIGHT)
+            image2 = image.transpose(Image.FLIP_TOP_BOTTOM)
+            images = [compose(image), compose(image1), compose(image2)]
+            if self.phase == 'validate':
+                return torch.stack(images), label1, label2
+            else:
+                return torch.stack(images)
 
     def __len__(self):
         return len(self.data)

@@ -54,7 +54,7 @@ if __name__ == '__main__':
             from models.resnet50v2_sn_multitask_model import Model
 
             model = Model(config)
-            ckpt = torch.load('multi_task_ckpt/species/2018Oct22-230251/62.pth')
+            ckpt = torch.load('multi_task_ckpt/species/2018Oct22-230251/78.pth')
             model_dict = model.net.state_dict()
             patten = re.compile(r'(?!(task1|task2))')
             for key in list(ckpt.keys()):
@@ -147,7 +147,7 @@ if __name__ == '__main__':
             from models.resnet50v2_sn_model import Model
 
             model = Model(config)
-            ckpt = torch.load('multi_task_ckpt/species/2018Oct22-230251/62.pth')
+            ckpt = torch.load('multi_task_ckpt/species/2018Oct22-230251/78.pth')
             model_dict = model.net.state_dict()
             patten = re.compile(r'(?!fc)')
             for key in list(ckpt.keys()):
