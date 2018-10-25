@@ -15,3 +15,8 @@ pretrained/
 __MACOSX/
 **/._.DS_Store
 submit/
+old_ckpt/
+old_run/
+old_multi_task_ckpt/
+old_multi_task_run/
+**/*.ipynb
