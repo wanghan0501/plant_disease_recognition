@@ -74,7 +74,7 @@ apple:
 
   # dataset
   num_classes: 6
-  train_label_path: data/multilayer_annotations/apple/more_multilayer_apple_train.json.json
+  train_label_path: data/multilayer_annotations/apple/more_multilayer_apple_train.json
   validate_label_path: data/multilayer_annotations/apple/multilayer_apple_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
@@ -106,7 +106,7 @@ cherry:
   classes_weight: [1.0, 12.517241379310345, 13.2]
   # dataset
   num_classes: 3
-  train_label_path: data/multilayer_annotations/cherry/more_multilayer_cherry_train.json.json
+  train_label_path: data/multilayer_annotations/cherry/more_multilayer_cherry_train.json
   validate_label_path: data/multilayer_annotations/cherry/multilayer_cherry_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
@@ -139,7 +139,7 @@ corn:
 
   # dataset
   num_classes: 8
-  train_label_path: data/multilayer_annotations/corn/more_multilayer_corn_train.json.json
+  train_label_path: data/multilayer_annotations/corn/more_multilayer_corn_train.json
   validate_label_path: data/multilayer_annotations/corn/multilayer_corn_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
@@ -172,7 +172,7 @@ grape:
 
   # dataset
   num_classes: 7
-  train_label_path: data/multilayer_annotations/grape/more_multilayer_grape_train.json.json
+  train_label_path: data/multilayer_annotations/grape/more_multilayer_grape_train.json
   validate_label_path: data/multilayer_annotations/grape/multilayer_grape_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
@@ -204,7 +204,7 @@ citrus:
 
   # dataset
   num_classes: 3
-  train_label_path: data/multilayer_annotations/citrus/multilayer_citrus_train.json.json
+  train_label_path: data/multilayer_annotations/citrus/multilayer_citrus_train.json
   validate_label_path: data/multilayer_annotations/citrus/multilayer_citrus_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
@@ -235,7 +235,7 @@ peach:
   classes_weight: [1.402618657937807, 1.0, 1.112987012987013]
   # dataset
   num_classes: 3
-  train_label_path: data/multilayer_annotations/peach/more_multilayer_peach_train.json.json
+  train_label_path: data/multilayer_annotations/peach/more_multilayer_peach_train.json
   validate_label_path: data/multilayer_annotations/peach/multilayer_peach_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
@@ -268,7 +268,7 @@ pepper:
 
   # dataset
   num_classes: 3
-  train_label_path: data/multilayer_annotations/pepper/more_multilayer_pepper_train.json.json
+  train_label_path: data/multilayer_annotations/pepper/more_multilayer_pepper_train.json
   validate_label_path: data/multilayer_annotations/pepper/multilayer_pepper_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
@@ -302,7 +302,7 @@ potato:
   # dataset
   num_classes: 5
 
-  train_label_path: data/multilayer_annotations/potato/more_multilayer_potato_train.json.json
+  train_label_path: data/multilayer_annotations/potato/more_multilayer_potato_train.json
   validate_label_path: data/multilayer_annotations/potato/multilayer_potato_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
@@ -335,7 +335,7 @@ strawberry:
 
   # dataset
   num_classes: 3
-  train_label_path: data/multilayer_annotations/strawberry/more_multilayer_strawberry_train.json.json
+  train_label_path: data/multilayer_annotations/strawberry/more_multilayer_strawberry_train.json
   validate_label_path: data/multilayer_annotations/strawberry/multilayer_strawberry_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
@@ -368,7 +368,7 @@ tomato:
 
   # dataset
   num_classes: 20
-  train_label_path: data/multilayer_annotations/tomato/more_tomato_strawberry_train.json.json
+  train_label_path: data/multilayer_annotations/tomato/more_tomato_strawberry_train.json
   validate_label_path: data/multilayer_annotations/tomato/multilayer_tomato_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
