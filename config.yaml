@@ -1,6 +1,6 @@
 whole:
   # train
-  epochs: 100
+  epochs: 300
   lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
@@ -29,7 +29,7 @@ whole:
 
 species:
   # train
-  epochs: 100
+  epochs: 300
   lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
@@ -37,6 +37,9 @@ species:
   logger: True
   optim: Adam
   keep_prob: 0.5
+  use_classes_weight: True
+  # classes_weight: [5.32035234121465, 13.927184466019419, 3.710313611380537, 4.173090909090909, 2.873309964947421, 6.110756123535676, 6.794552989934873, 4.040845070422535, 11.28416912487709, 1.0]
+  classes_weight: [5.562312312312312, 10.855677655677656, 4.267242620590353, 4.3505578391074575, 7.4201301952929395, 6.534950385887542, 7.117195004803074, 5.936698717948717, 11.477924089852827, 1.0]
 
   # dataset
   num_classes: 10
@@ -59,8 +62,8 @@ species:
 
 apple:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -92,8 +95,8 @@ apple:
 
 cherry:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -124,8 +127,8 @@ cherry:
 
 corn:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -157,8 +160,8 @@ corn:
 
 grape:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -190,8 +193,8 @@ grape:
 
 citrus:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -221,8 +224,8 @@ citrus:
 
 peach:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -253,8 +256,8 @@ peach:
 
 pepper:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -286,8 +289,8 @@ pepper:
 
 potato:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -320,8 +323,8 @@ potato:
 
 strawberry:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -353,8 +356,8 @@ strawberry:
 
 tomato:
   # train
-  epochs: 100
-  lr: 0.005
+  epochs: 300
+  lr: 0.01
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True

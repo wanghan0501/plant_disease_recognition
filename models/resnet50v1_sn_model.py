@@ -50,7 +50,13 @@ class Model:
                 self.writer = SummaryWriter(self.run_path)
 
     def train(self):
-        criterion = nn.CrossEntropyLoss()
+        if self.config['use_classes_weight']:
+            weight = torch.tensor(self.config['classes_weight'])
+            if self.use_cuda:
+                weight = weight.cuda()
+            criterion = nn.CrossEntropyLoss(weight=weight)
+        else:
+            criterion = nn.CrossEntropyLoss()
 
         if self.config['optim'] == 'SGD':
             optimizer = torch.optim.SGD(self.net.parameters(),
@@ -134,7 +140,13 @@ class Model:
             pin_memory=True,
             drop_last=True)
 
-        criterion = nn.CrossEntropyLoss()
+        if self.config['use_classes_weight']:
+            weight = torch.tensor(self.config['classes_weight'])
+            if self.use_cuda:
+                weight = weight.cuda()
+            criterion = nn.CrossEntropyLoss(weight=weight)
+        else:
+            criterion = nn.CrossEntropyLoss()
 
         valid_loss = 0
         valid_acc = 0
