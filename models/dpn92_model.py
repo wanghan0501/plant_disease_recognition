@@ -116,7 +116,7 @@ class Model:
             valid_acc = self.validate(epoch_id)
 
             # save best model
-            if valid_acc > best_acc:
+            if valid_acc >= best_acc:
                 best_acc = valid_acc
                 best_epoch = epoch_id
             self.save(epoch_id)

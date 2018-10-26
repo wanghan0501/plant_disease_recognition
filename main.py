@@ -111,8 +111,8 @@ if __name__ == '__main__':
         # patten = re.compile(r'(?!classifier)')
         # for key in list(ckpt.keys()):
         #     res = patten.match(key)
-        #     if res:
-        #         model_dict[key] = ckpt[key]
+        #    if res:
+        #        model_dict[key] = ckpt[key]
         # model_dict = model.net.load_state_dict(model_dict, strict=False)
         # model.train()
         model = Model(config)

@@ -36,6 +36,7 @@ class DiseaseDataset(Dataset):
             prefix = self.config['validate_image_prefix']
         image_path = os.path.join(prefix, item['image_id'])
         image = Image.open(image_path)
+        image = image.convert('RGB')
         # label = item['disease_class']
         label = item['second']
         # label = item['first']

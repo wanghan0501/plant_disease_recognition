@@ -18,7 +18,7 @@ whole:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: ckpt
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -40,14 +40,14 @@ species:
 
   # dataset
   num_classes: 10
-  train_label_path: data/multilayer_annotations/multilayer_train_annotations_20181021.json
+  train_label_path: data/multilayer_annotations/more_multilayer_train_annotations_20181021.json
   validate_label_path: data/multilayer_annotations/multilayer_validation_annotations_20181021.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/species
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -80,7 +80,7 @@ apple:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/apple
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -112,7 +112,7 @@ cherry:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/cherry
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -145,7 +145,7 @@ corn:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/corn
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -178,7 +178,7 @@ grape:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/grape
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -210,7 +210,7 @@ citrus:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/citrus
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -241,7 +241,7 @@ peach:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/peach
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -274,7 +274,7 @@ pepper:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/pepper
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -308,7 +308,7 @@ potato:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/potato
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -341,7 +341,7 @@ strawberry:
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/strawberry
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -367,14 +367,14 @@ tomato:
 
   # dataset
   num_classes: 20
-  train_label_path: data/multilayer_annotations/tomato/more_tomato_strawberry_train.json
+  train_label_path: data/multilayer_annotations/tomato/more_multilayer_tomato_train.json
   validate_label_path: data/multilayer_annotations/tomato/multilayer_tomato_validation.json
   train_image_prefix: data/ai_challenger_pdr2018_trainingset_20181023/AgriculturalDisease_trainingset/images
   validate_image_prefix: data/ai_challenger_pdr2018_validationset_20181023/AgriculturalDisease_validationset/images
 
   # dataloader
   worker: 2
-  batch_size: 32
+  batch_size: 64
   ckpt_path: multi_task_ckpt/tomato
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
