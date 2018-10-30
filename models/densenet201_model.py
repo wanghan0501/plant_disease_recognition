@@ -59,12 +59,24 @@ class Model:
             criterion = nn.CrossEntropyLoss()
 
         if self.config['optim'] == 'SGD':
-            optimizer = torch.optim.SGD(self.net.parameters(),
-                                        lr=self.config['lr'],
-                                        momentum=self.config['momentum'],
-                                        weight_decay=self.config['weight_decay'])
+            if self.config['use_finetune']:
+                ignored_params = list(map(id, self.net.classifier.parameters()))
+                base_params = filter(lambda p: id(p) not in ignored_params,
+                                     self.net.parameters())
+                optimizer = torch.optim.SGD([
+                    {'params': self.net.classifier.parameters()},
+                    {'params': base_params,
+                     'lr': self.config['lr'] * 0.1}
+                ], lr=self.config['lr'],
+                    momentum=self.config['momentum'],
+                    weight_decay=self.config['weight_decay'])
+            else:
+                optimizer = torch.optim.SGD(self.net.parameters(),
+                                            lr=self.config['lr'],
+                                            momentum=self.config['momentum'],
+                                            weight_decay=self.config['weight_decay'])
             lr_decay = lr_scheduler.CosineAnnealingLR(
-                optimizer, T_max=self.config['epochs'])
+                optimizer, T_max=self.config['epochs'] // 4)
         elif self.config['optim'] == 'Adam':
             optimizer = torch.optim.Adam(self.net.parameters(),
                                          lr=self.config['lr'],

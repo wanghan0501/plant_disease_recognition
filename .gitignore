@@ -20,3 +20,4 @@ old_run/
 old_multi_task_ckpt/
 old_multi_task_run/
 **/*.ipynb
+best_ckpt/

@@ -105,18 +105,8 @@ if __name__ == '__main__':
     elif args.model == 'densenet121':
         from models.densenet121_model import Model
 
-        # model = Model(config)
-        # ckpt = torch.load('multi_task_ckpt/species/2018Oct22-230249/75.pth')
-        # model_dict = model.net.state_dict()
-        # patten = re.compile(r'(?!classifier)')
-        # for key in list(ckpt.keys()):
-        #     res = patten.match(key)
-        #    if res:
-        #        model_dict[key] = ckpt[key]
-        # model_dict = model.net.load_state_dict(model_dict, strict=False)
-        # model.train()
         model = Model(config)
-        ckpt = torch.load('pretrained/densenet121.pth')
+        ckpt = torch.load('multi_task_ckpt/species/2018Oct27-231147/172.pth')
         model_dict = model.net.state_dict()
         patten = re.compile(r'(?!classifier)')
         for key in list(ckpt.keys()):
@@ -125,6 +115,16 @@ if __name__ == '__main__':
                 model_dict[key] = ckpt[key]
         model_dict = model.net.load_state_dict(model_dict, strict=False)
         model.train()
+        # model = Model(config)
+        # ckpt = torch.load('pretrained/densenet121.pth')
+        # model_dict = model.net.state_dict()
+        # patten = re.compile(r'(?!classifier)')
+        # for key in list(ckpt.keys()):
+        #     res = patten.match(key)
+        #     if res:
+        #         model_dict[key] = ckpt[key]
+        # model_dict = model.net.load_state_dict(model_dict, strict=False)
+        # model.train()
     elif args.model == 'densenet201':
         from models.densenet201_model import Model
 
