@@ -204,8 +204,6 @@ class Model:
 
                 logits_avg = torch.stack([logits_56_avg, logits_112_avg, logits_224_avg], -1).mean(-1)
 
-                import pdb;
-                pdb.set_trace()
                 prob = F.softmax(logits_avg, dim=1)
                 loss = criterion(logits_avg, target)
                 valid_loss += loss.data.item()
