@@ -95,7 +95,7 @@ class Model:
             drop_last=True,
             pin_memory=True)
 
-        train_dataset_112 = DiseaseDataset('train', self.config, random_size=56)
+        train_dataset_112 = DiseaseDataset('train', self.config, random_size=112)
         train_loader_112 = DataLoader(
             train_dataset_112,
             batch_size=self.config['batch_size'],
@@ -104,7 +104,7 @@ class Model:
             drop_last=True,
             pin_memory=True)
 
-        train_dataset_224 = DiseaseDataset('train', self.config, random_size=56)
+        train_dataset_224 = DiseaseDataset('train', self.config, random_size=224)
         train_loader_224 = DataLoader(
             train_dataset_224,
             batch_size=self.config['batch_size'],
@@ -186,8 +186,8 @@ class Model:
             for batch_id, (data, target) in enumerate(valid_loader):
                 if self.use_cuda:
                     data_56 = data[0].cuda()
-                    data_112 = data[0].cuda()
-                    data_224 = data[0].cuda()
+                    data_112 = data[1].cuda()
+                    data_224 = data[2].cuda()
                     target = target.cuda()
 
                 batch_size, ncrops, c, h, w = data_56.size()
