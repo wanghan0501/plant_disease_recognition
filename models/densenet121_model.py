@@ -21,7 +21,7 @@ from dataset.disease_dataset import DiseaseDataset
 from nets.densenet import densenet121
 from utils.log import Logger
 
-
+import torchvision.models.resnet
 class Model:
 
     def __init__(self, config):
@@ -76,7 +76,7 @@ class Model:
                                             momentum=self.config['momentum'],
                                             weight_decay=self.config['weight_decay'])
             lr_decay = lr_scheduler.CosineAnnealingLR(
-                optimizer, T_max=self.config['epochs'] // 4)
+                optimizer, T_max=self.config['epochs'])
         elif self.config['optim'] == 'Adam':
             optimizer = torch.optim.Adam(self.net.parameters(),
                                          lr=self.config['lr'],

@@ -17,15 +17,15 @@ from tensorboardX import SummaryWriter
 from torch.optim import lr_scheduler
 from torch.utils.data import DataLoader
 
-from dataset.disease_dataset import DiseaseDataset
-from nets.resnet_v2_sn import resnetv2sn101
+from dataset.disease_dataset_spp import DiseaseDataset
+from nets.resnet_v2_sn_spp import resnetv2sn50
 from utils.log import Logger
 
 
 class Model:
 
     def __init__(self, config):
-        self.net = resnetv2sn101(num_classes=config['num_classes'], keep_prob=config['keep_prob'])
+        self.net = resnetv2sn50(num_classes=config['num_classes'], keep_prob=config['keep_prob'])
         self.config = config
         self.epochs = config['epochs']
         self.use_cuda = config['use_cuda']
@@ -38,7 +38,7 @@ class Model:
             if not os.path.exists(self.ckpt_path):
                 os.makedirs(self.ckpt_path)
 
-            self.logger = Logger(os.path.join(self.ckpt_path, 'resnet101v2_sn.log')).get_logger()
+            self.logger = Logger(os.path.join(self.ckpt_path, 'resnet_v2_sn_spp.log')).get_logger()
             self.logger.info(">>>The net is:")
             self.logger.info(self.net)
             self.logger.info(">>>The config is:")
@@ -86,9 +86,27 @@ class Model:
                                              lr=self.config['lr'],
                                              weight_decay=self.config['weight_decay'])
 
-        train_dataset = DiseaseDataset('train', self.config)
-        train_loader = DataLoader(
-            train_dataset,
+        train_dataset_56 = DiseaseDataset('train', self.config, random_size=56)
+        train_loader_56 = DataLoader(
+            train_dataset_56,
+            batch_size=self.config['batch_size'],
+            shuffle=True,
+            num_workers=self.config['worker'],
+            drop_last=True,
+            pin_memory=True)
+
+        train_dataset_112 = DiseaseDataset('train', self.config, random_size=56)
+        train_loader_112 = DataLoader(
+            train_dataset_112,
+            batch_size=self.config['batch_size'],
+            shuffle=True,
+            num_workers=self.config['worker'],
+            drop_last=True,
+            pin_memory=True)
+
+        train_dataset_224 = DiseaseDataset('train', self.config, random_size=56)
+        train_loader_224 = DataLoader(
+            train_dataset_224,
             batch_size=self.config['batch_size'],
             shuffle=True,
             num_workers=self.config['worker'],
@@ -106,6 +124,7 @@ class Model:
             train_loss = 0
             train_acc = 0
             self.net.train()
+            train_loader = np.random.choice([train_loader_56, train_loader_112, train_loader_224])
             for batch_id, (data, target) in enumerate(train_loader):
                 if self.use_cuda:
                     data, target = data.cuda(), target.cuda()
@@ -166,10 +185,29 @@ class Model:
         with torch.no_grad():
             for batch_id, (data, target) in enumerate(valid_loader):
                 if self.use_cuda:
-                    data, target = data.cuda(), target.cuda()
-                logits = self.net(data)
-                prob = F.softmax(logits, dim=1)
-                loss = criterion(logits, target)
+                    data_56 = data[0].cuda()
+                    data_112 = data[0].cuda()
+                    data_224 = data[0].cuda()
+                    target = target.cuda()
+
+                batch_size, ncrops, c, h, w = data_56.size()
+                logits_56 = self.net(data_56.view(-1, c, h, w))
+                logits_56_avg = logits_56.view(batch_size, ncrops, -1).mean(1)
+
+                batch_size, ncrops, c, h, w = data_112.size()
+                logits_112 = self.net(data_112.view(-1, c, h, w))
+                logits_112_avg = logits_112.view(batch_size, ncrops, -1).mean(1)
+
+                batch_size, ncrops, c, h, w = data_224.size()
+                logits_224 = self.net(data_224.view(-1, c, h, w))
+                logits_224_avg = logits_224.view(batch_size, ncrops, -1).mean(1)
+
+                logits_avg = torch.stack([logits_56_avg, logits_112_avg, logits_224_avg], -1).mean(-1)
+
+                import pdb;
+                pdb.set_trace()
+                prob = F.softmax(logits_avg, dim=1)
+                loss = criterion(logits_avg, target)
                 valid_loss += loss.data.item()
                 acc = sum(
                     np.argmax(prob.data.cpu().numpy(), 1) ==

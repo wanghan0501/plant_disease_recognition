@@ -30,8 +30,8 @@ if __name__ == '__main__':
     parser.add_argument('--gpu', default='0', type=str,
                         help='use gpu device. default: 0')
     parser.add_argument('--model', default='densenet121', type=str,
-                        choices=['densenet121', 'densenet201', 'resnet50v2_sn', 'resnet101v2_sn',
-                                 'resnet50v1_sn', 'dpn92', 'dpn131'])
+                        choices=['densenet121', 'densenet201', 'resnet50v2_sn', 'resnet50v2_sn_spp',
+                                 'resnet101v2_sn', 'resnet50v1_sn', 'dpn92', 'dpn131'])
     parser.add_argument('--task', default='apple', type=str,
                         choices=['species', 'apple', 'cherry', 'citrus', 'corn', 'grape',
                                  'peach', 'potato', 'strawberry', 'pepper', 'tomato'],
@@ -60,6 +60,21 @@ if __name__ == '__main__':
         #         model_dict[key] = ckpt[key]
         # model_dict = model.net.load_state_dict(model_dict, strict=False)
         # model.train()
+        model = Model(config)
+        ckpt = torch.load('pretrained/resnet50v2_sn.pth')
+        pretrained_dict = ckpt['state_dict']
+        model_dict = model.net.state_dict()
+        patten = re.compile(r'(?!fc)')
+        for key in list(pretrained_dict.keys()):
+            cur_key = key[7:]
+            res = patten.match(cur_key)
+            if res:
+                model_dict[cur_key] = pretrained_dict[key]
+        model_dict = model.net.load_state_dict(model_dict, strict=False)
+        model.train()
+    elif args.model == 'resnet50v2_sn_spp':
+        from models.resnet50v2_sn_spp_model import Model
+
         model = Model(config)
         ckpt = torch.load('pretrained/resnet50v2_sn.pth')
         pretrained_dict = ckpt['state_dict']
@@ -142,7 +157,7 @@ if __name__ == '__main__':
         from models.dpn92_model import Model
 
         model = Model(config)
-        ckpt = torch.load('pretrained/dpn92.pth')
+        ckpt = torch.load('pretrained/dpn92_extra.pth')
         model_dict = model.net.state_dict()
         patten = re.compile(r'(?!classifier)')
         for key in list(ckpt.keys()):

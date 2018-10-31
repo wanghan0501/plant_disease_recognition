@@ -78,7 +78,7 @@ apple:
   # classes_weight: [1.0, 5.61611374407583, 7.796052631578948, 2.775175644028103, 8.345070422535212, 29.625]
   classes_weight: [1.0, 13.412322274881516, 18.61842105263158, 2.700381679389313, 19.929577464788736, 70.75]
   #only for SGD
-  use_finetune: True
+  use_finetune: False
 
   # dataset
   num_classes: 6
@@ -89,7 +89,7 @@ apple:
 
   # dataloader
   worker: 2
-  batch_size: 64
+  batch_size: 32
   ckpt_path: multi_task_ckpt/apple
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -145,21 +145,21 @@ corn:
   optim: SGD
   keep_prob: 0.5
   use_classes_weight: True
-  # classes_weight: [2.167553191489362, 4.267015706806283, 4.880239520958084, 1.6873706004140787, 2.295774647887324, 3.9182692307692313, 1.6365461847389557, 1.0]
-  classes_weight: [1.0, 8.052356020942408, 9.209580838323353, 3.1842650103519667, 4.3323943661971835, 7.394230769230769, 3.0883534136546187, 1.887116564417178]
+  classes_weight: [2.167553191489362, 4.267015706806283, 4.880239520958084, 1.6873706004140787, 2.295774647887324, 3.9182692307692313, 1.6365461847389557, 1.0]
+  # classes_weight: [1.0, 8.052356020942408, 9.209580838323353, 3.1842650103519667, 4.3323943661971835, 7.394230769230769, 3.0883534136546187, 1.887116564417178]
   #only for SGD
-  use_finetune: True
+  use_finetune: False
 
   # dataset
   num_classes: 8
-  train_label_path: data/multilayer_annotations/corn/more_multilayer_corn_train.json
+  train_label_path: data/multilayer_annotations/corn/multilayer_corn_train.json
   validate_label_path: data/multilayer_annotations/corn/multilayer_corn_validation.json
   train_image_prefix: data/ai_challenger_pdr2018/images
   validate_image_prefix: data/ai_challenger_pdr2018/images
 
   # dataloader
   worker: 2
-  batch_size: 64
+  batch_size: 16
   ckpt_path: multi_task_ckpt/corn
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]
@@ -214,14 +214,14 @@ citrus:
   logger: True
   optim: SGD
   keep_prob: 0.5
-  use_classes_weight: True
+  use_classes_weight: False
   classes_weight: [4.9809264305177114, 1.0, 1.0161200667037242]
   #only for SGD
   use_finetune: True
 
   # dataset
   num_classes: 3
-  train_label_path: data/multilayer_annotations/citrus/multilayer_citrus_train.json
+  train_label_path: data/multilayer_annotations/citrus/smote_multilayer_citrus_train.json
   validate_label_path: data/multilayer_annotations/citrus/multilayer_citrus_validation.json
   train_image_prefix: data/ai_challenger_pdr2018/images
   validate_image_prefix: data/ai_challenger_pdr2018/images
