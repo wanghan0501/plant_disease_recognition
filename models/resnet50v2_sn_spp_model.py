@@ -86,18 +86,9 @@ class Model:
                                              lr=self.config['lr'],
                                              weight_decay=self.config['weight_decay'])
 
-        train_dataset_56 = DiseaseDataset('train', self.config, random_size=56)
-        train_loader_56 = DataLoader(
-            train_dataset_56,
-            batch_size=self.config['batch_size'],
-            shuffle=True,
-            num_workers=self.config['worker'],
-            drop_last=True,
-            pin_memory=True)
-
-        train_dataset_112 = DiseaseDataset('train', self.config, random_size=112)
-        train_loader_112 = DataLoader(
-            train_dataset_112,
+        train_dataset_180 = DiseaseDataset('train', self.config, random_size=180)
+        train_loader_180 = DataLoader(
+            train_dataset_180,
             batch_size=self.config['batch_size'],
             shuffle=True,
             num_workers=self.config['worker'],
@@ -124,24 +115,26 @@ class Model:
             train_loss = 0
             train_acc = 0
             self.net.train()
-            train_loader = np.random.choice([train_loader_56, train_loader_112, train_loader_224])
-            for batch_id, (data, target) in enumerate(train_loader):
-                if self.use_cuda:
-                    data, target = data.cuda(), target.cuda()
 
-                optimizer.zero_grad()
-                logits = self.net(data)
-                prob = F.softmax(logits, dim=1)
-                loss = criterion(logits, target)
-                loss.backward()
-                optimizer.step()
-                train_loss += loss.data.item()
-                acc = sum(
-                    np.argmax(prob.data.cpu().numpy(), 1) ==
-                    target.data.cpu().numpy()) / float(train_loader.batch_size)
-                train_acc += acc
-            train_acc = train_acc / len(train_loader)
-            train_loss = train_loss / len(train_loader)
+            train_loader_list = [train_loader_224, train_loader_180]
+            for train_loader in train_loader_list:
+                for batch_id, (data, target) in enumerate(train_loader):
+                    if self.use_cuda:
+                        data, target = data.cuda(), target.cuda()
+
+                    optimizer.zero_grad()
+                    logits = self.net(data)
+                    prob = F.softmax(logits, dim=1)
+                    loss = criterion(logits, target)
+                    loss.backward()
+                    optimizer.step()
+                    train_loss += loss.data.item()
+                    acc = sum(
+                        np.argmax(prob.data.cpu().numpy(), 1) ==
+                        target.data.cpu().numpy()) / float(train_loader.batch_size)
+                    train_acc += acc
+            train_acc = train_acc / (len(train_loader_list) * len(train_loader))
+            train_loss = train_loss / (len(train_loader_list) * len(train_loader))
             if self.config['logger']:
                 self.logger.info("[Train] Epoch:{}, Loss:{:.6f}, Accuracy:{:.6f}%".format(
                     epoch_id, train_loss, 100. * train_acc))
@@ -185,24 +178,19 @@ class Model:
         with torch.no_grad():
             for batch_id, (data, target) in enumerate(valid_loader):
                 if self.use_cuda:
-                    data_56 = data[0].cuda()
-                    data_112 = data[1].cuda()
-                    data_224 = data[2].cuda()
+                    data_180 = data[0].cuda()
+                    data_224 = data[1].cuda()
                     target = target.cuda()
 
-                batch_size, ncrops, c, h, w = data_56.size()
-                logits_56 = self.net(data_56.view(-1, c, h, w))
-                logits_56_avg = logits_56.view(batch_size, ncrops, -1).mean(1)
-
-                batch_size, ncrops, c, h, w = data_112.size()
-                logits_112 = self.net(data_112.view(-1, c, h, w))
-                logits_112_avg = logits_112.view(batch_size, ncrops, -1).mean(1)
+                batch_size, ncrops, c, h, w = data_180.size()
+                logits_180 = self.net(data_180.view(-1, c, h, w))
+                logits_180_avg = logits_180.view(batch_size, ncrops, -1).mean(1)
 
                 batch_size, ncrops, c, h, w = data_224.size()
                 logits_224 = self.net(data_224.view(-1, c, h, w))
                 logits_224_avg = logits_224.view(batch_size, ncrops, -1).mean(1)
 
-                logits_avg = torch.stack([logits_56_avg, logits_112_avg, logits_224_avg], -1).mean(-1)
+                logits_avg = torch.stack([logits_180_avg, logits_224_avg], -1).mean(-1)
 
                 prob = F.softmax(logits_avg, dim=1)
                 loss = criterion(logits_avg, target)

@@ -11,7 +11,7 @@ import torch.nn.functional as F
 
 class SPPLayer(torch.nn.Module):
 
-    def __init__(self, num_levels, pool_type='max_pool'):
+    def __init__(self, num_levels, pool_type='avg_pool'):
         super(SPPLayer, self).__init__()
 
         self.num_levels = num_levels

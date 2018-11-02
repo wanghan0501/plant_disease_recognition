@@ -56,7 +56,7 @@ class DiseaseDataset(Dataset):
             image1 = image.transpose(Image.FLIP_LEFT_RIGHT)
             image2 = image.transpose(Image.FLIP_TOP_BOTTOM)
             images_list = []
-            for random_size in [56, 112, 224]:
+            for random_size in [180, 224]:
                 compose = transforms.Compose([
                     transforms.Resize([random_size, random_size]),
                     transforms.ToTensor(),

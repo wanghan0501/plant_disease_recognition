@@ -10,7 +10,7 @@ import os
 
 import pandas as pd
 import torchvision.transforms as transforms
-from PIL import Image
+from PIL import Image, ImageEnhance
 from torch.utils.data import Dataset
 import torch
 
@@ -37,13 +37,16 @@ class DiseaseDataset(Dataset):
         image_path = os.path.join(prefix, item['image_id'])
         image = Image.open(image_path)
         image = image.convert('RGB')
-        # label = item['disease_class']
-        label = item['second']
+        enh_con = ImageEnhance.Contrast(image)
+        contrast = 1.5
+        image = enh_con.enhance(contrast)
+        label = item['disease_class']
+        # label = item['second']
         # label = item['first']
 
         if self.phase == 'train':
             compose = transforms.Compose([
-                transforms.RandomRotation(degrees=15),
+                transforms.RandomRotation(degrees=20),
                 transforms.RandomResizedCrop(224, scale=(0.7, 1.0)),
                 transforms.RandomVerticalFlip(p=0.5),
                 transforms.RandomHorizontalFlip(p=0.5),

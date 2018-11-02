@@ -21,7 +21,7 @@ from dataset.disease_dataset import DiseaseDataset
 from nets.densenet import densenet121
 from utils.log import Logger
 
-import torchvision.models.resnet
+
 class Model:
 
     def __init__(self, config):
