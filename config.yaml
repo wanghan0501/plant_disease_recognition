@@ -1,7 +1,7 @@
 whole:
   # train
   epochs: 200
-  lr: 0.01
+  lr: 0.05
   weight_decay: 0.0001
   momentum: 0.9
   use_cuda: True
@@ -23,7 +23,7 @@ whole:
 
   # dataloader
   worker: 2
-  batch_size: 48
+  batch_size: 1
   ckpt_path: ckpt
   transform_mean: [0.463218, 0.48650995, 0.40001142]
   transform_std:  [0.19403107, 0.17286421, 0.21412726]

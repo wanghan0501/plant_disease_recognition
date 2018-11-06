@@ -30,7 +30,8 @@ if __name__ == '__main__':
     parser.add_argument('--gpu', default='0', type=str,
                         help='use gpu device. default: 0')
     parser.add_argument('--model', default='densenet121', type=str,
-                        choices=['densenet121', 'densenet201', 'resnet50v2_sn', 'resnet50v2_sn_spp',
+                        choices=['inceptionv3_attention', 'densenet121', 'densenet201', 'resnet50v2_sn',
+                                 'resnet50v2_sn_spp',
                                  'resnet101v2_sn', 'resnet50v1_sn', 'dpn92', 'dpn131'])
     parser.add_argument('--task', default='apple', type=str,
                         choices=['whole', 'species', 'apple', 'cherry', 'citrus', 'corn', 'grape',
@@ -70,6 +71,19 @@ if __name__ == '__main__':
             res = patten.match(cur_key)
             if res:
                 model_dict[cur_key] = pretrained_dict[key]
+        model_dict = model.net.load_state_dict(model_dict, strict=False)
+        model.train()
+    elif args.model == 'inceptionv3_attention':
+        from models.inceptionv3_attention_model import Model
+
+        model = Model(config)
+        ckpt = torch.load('pretrained/inception_v3.pth')
+        model_dict = model.net.state_dict()
+        patten = re.compile(r'(?!(fc|bn|AuxLogits))')
+        for key in list(ckpt.keys()):
+            res = patten.match(key)
+            if res:
+                model_dict[key] = ckpt[key]
         model_dict = model.net.load_state_dict(model_dict, strict=False)
         model.train()
     elif args.model == 'resnet50v2_sn_spp':
@@ -121,7 +135,7 @@ if __name__ == '__main__':
         from models.densenet121_model import Model
 
         # model = Model(config)
-        # ckpt = torch.load('multi_task_ckpt/species/2018Oct27-231147/172.pth')
+        # ckpt = torch.load('ckpt/2018Nov02-224423/42.pth')
         # model_dict = model.net.state_dict()
         # patten = re.compile(r'(?!classifier)')
         # for key in list(ckpt.keys()):
