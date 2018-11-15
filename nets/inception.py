@@ -36,14 +36,14 @@ def inception_v3(pretrained=False, **kwargs):
 
 
 class Attention(nn.Module):
-    def __init__(self, keep_prob=0.5):
+    def __init__(self, drop_prob=0.5):
         super(Attention, self).__init__()
         self.cov1 = BasicConv2d(2048, 1024, kernel_size=1, stride=1)
         self.cov2 = BasicConv2d(1024, 10 * 81, kernel_size=1, stride=1)
 
         self.cov3 = BasicConv2d(81, 256, kernel_size=1, stride=1)
         # self.cov4 = BasicConv2d(256, 256, kernel_size=(3, 3), stride=2)
-        self.dropout = nn.Dropout2d(p=keep_prob)
+        self.dropout = nn.Dropout2d(p=drop_prob)
         # apple
         self.task_apple = torch.nn.Linear(256, 6)
         # cherry
@@ -108,7 +108,7 @@ class Attention(nn.Module):
 
 class Inception3(nn.Module):
 
-    def __init__(self, attention_classes=10, keep_prob=0.5, transform_input=False):
+    def __init__(self, attention_classes=10, drop_prob=0.5, transform_input=False):
         super(Inception3, self).__init__()
         self.transform_input = transform_input
         self.Conv2d_1a_3x3 = BasicConv2d(3, 32, kernel_size=3, stride=2)
@@ -128,7 +128,7 @@ class Inception3(nn.Module):
         self.Mixed_7a = InceptionD(768)
         self.Mixed_7b = InceptionE(1280)
         self.Mixed_7c = InceptionE(2048)
-        self.attention = Attention(keep_prob=keep_prob)
+        self.attention = Attention(drop_prob=drop_prob)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d) or isinstance(m, nn.Linear):

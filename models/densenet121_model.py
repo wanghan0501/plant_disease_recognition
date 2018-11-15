@@ -25,7 +25,7 @@ from utils.log import Logger
 class Model:
 
     def __init__(self, config):
-        self.net = densenet121(num_classes=config['num_classes'], keep_prob=config['keep_prob'])
+        self.net = densenet121(num_classes=config['num_classes'], drop_prob=config['drop_prob'])
         self.config = config
         self.epochs = config['epochs']
         self.use_cuda = config['use_cuda']
@@ -76,7 +76,7 @@ class Model:
                                             momentum=self.config['momentum'],
                                             weight_decay=self.config['weight_decay'])
             lr_decay = lr_scheduler.CosineAnnealingLR(
-                optimizer, T_max=self.config['epochs'])
+                optimizer, eta_min=0.000001, T_max=self.config['epochs'] // 4)
         elif self.config['optim'] == 'Adam':
             optimizer = torch.optim.Adam(self.net.parameters(),
                                          lr=self.config['lr'],

@@ -40,14 +40,15 @@ class DiseaseDataset(Dataset):
         enh_con = ImageEnhance.Contrast(image)
         contrast = 1.5
         image = enh_con.enhance(contrast)
-        label = item['disease_class']
-        # label = item['second']
+        # label = item['disease_class']
+        label = item['second']
         # label = item['first']
 
         if self.phase == 'train':
             compose = transforms.Compose([
-                transforms.RandomRotation(degrees=20),
-                transforms.RandomResizedCrop(224, scale=(0.7, 1.0)),
+                transforms.RandomRotation(degrees=15),
+                transforms.RandomResizedCrop(480, scale=(0.75, 1.0)),
+                transforms.Resize([320, 480]),
                 transforms.RandomVerticalFlip(p=0.5),
                 transforms.RandomHorizontalFlip(p=0.5),
                 transforms.ToTensor(),
@@ -55,7 +56,7 @@ class DiseaseDataset(Dataset):
             ])
         else:
             compose = transforms.Compose([
-                transforms.Resize([224, 224]),
+                transforms.Resize([320, 480]),
                 transforms.ToTensor(),
                 transforms.Normalize(mean=self.config['transform_mean'], std=self.config['transform_std'])
             ])

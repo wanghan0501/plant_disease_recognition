@@ -25,7 +25,7 @@ from utils.log import Logger
 class Model:
 
     def __init__(self, config):
-        self.net = resnetv2sn50(num_classes=config['num_classes'], keep_prob=config['keep_prob'])
+        self.net = resnetv2sn50(num_classes=config['num_classes'], drop_prob=config['drop_prob'])
         self.config = config
         self.epochs = config['epochs']
         self.use_cuda = config['use_cuda']

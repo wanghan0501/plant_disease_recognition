@@ -145,14 +145,14 @@ if __name__ == '__main__':
         # model_dict = model.net.load_state_dict(model_dict, strict=False)
         # model.train()
         model = Model(config)
-        ckpt = torch.load('pretrained/densenet121.pth')
-        model_dict = model.net.state_dict()
-        patten = re.compile(r'(?!classifier)')
-        for key in list(ckpt.keys()):
-            res = patten.match(key)
-            if res:
-                model_dict[key] = ckpt[key]
-        model_dict = model.net.load_state_dict(model_dict, strict=False)
+        model.load('best_ckpt/grape/densenet121/142.pth')
+        # model_dict = model.net.state_dict()
+        # patten = re.compile(r'(?!classifier)')
+        # for key in list(ckpt.keys()):
+        #     res = patten.match(key)
+        #     if res:
+        #         model_dict[key] = ckpt[key]
+        # model_dict = model.net.load_state_dict(model_dict, strict=False)
         model.train()
     elif args.model == 'densenet201':
         from models.densenet201_model import Model

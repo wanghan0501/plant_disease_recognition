@@ -177,7 +177,7 @@ class DenseNet(nn.Module):
 
     def __init__(self, growth_rate=32, block_config=(6, 12, 24, 16),
                  num_init_features=64, bn_size=4, drop_rate=0, num_classes=1000,
-                 keep_prob=0.5):
+                 drop_prob=0.5):
 
         super(DenseNet, self).__init__()
 
@@ -203,7 +203,7 @@ class DenseNet(nn.Module):
 
         # Final batch norm
         self.features.add_module('norm5', nn.BatchNorm2d(num_features))
-        self.drouput = nn.Dropout(p=keep_prob)
+        # self.drouput = nn.Dropout(p=drop_prob)
         # Linear layer
         self.classifier = nn.Linear(num_features, num_classes)
 
@@ -221,6 +221,6 @@ class DenseNet(nn.Module):
         features = self.features(x)
         out = F.relu(features, inplace=True)
         out = F.avg_pool2d(out, kernel_size=7, stride=1).view(features.size(0), -1)
-        out = self.drouput(out)
+        #out = self.drouput(out)
         out = self.classifier(out)
         return out

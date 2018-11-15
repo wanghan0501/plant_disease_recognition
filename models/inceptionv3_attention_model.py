@@ -14,6 +14,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from tensorboardX import SummaryWriter
+from torch.nn import DataParallel
 from torch.utils.data import DataLoader
 
 from dataset.disease_dataset_attention import DiseaseDataset
@@ -24,8 +25,7 @@ from utils.log import Logger
 class Model:
 
     def __init__(self, config):
-        self.net = Inception3(attention_classes=10,
-                              keep_prob=config['keep_prob'])
+        self.net = Inception3(attention_classes=10, drop_prob=config['drop_prob'])
         self.config = config
         self.epochs = config['epochs']
         self.use_cuda = config['use_cuda']
@@ -48,6 +48,7 @@ class Model:
             if not os.path.exists(self.run_path):
                 os.makedirs(self.run_path)
                 self.writer = SummaryWriter(self.run_path)
+
 
     def loss(self, aux, x, target_aux, target):
 
@@ -92,6 +93,7 @@ class Model:
         aux_prob = F.softmax(aux, dim=1)
         aux_class = np.argmax(aux_prob.squeeze().data.cpu().numpy())
         target_class = target_aux.cpu()
+
         if aux_class == target_class:
             if target_class == 0:
                 loss = 0.1 * aux_criterion(aux, target_aux) + apple_criterion(x, target)
@@ -116,6 +118,7 @@ class Model:
         else:
             loss = aux_criterion(aux, target_aux)
         return loss
+
 
     def train(self):
 
